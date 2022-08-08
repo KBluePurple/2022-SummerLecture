@@ -1,3 +1,4 @@
+using System.Reflection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] Menu _mainMenuPrefab;
     [SerializeField] Menu[] _menus;
-    [SerializeField] Transform _menuParentTransform;
+    
+    private Transform _menuParentTransform;
 
     private Stack<Menu> _menuStack = new Stack<Menu>();
     private static MenuManager _instance;
@@ -54,6 +56,13 @@ public class MenuManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(_menuParentTransform.gameObject);
+
+        System.Type type = this.GetType();
+        BindingFlags flag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
+        FieldInfo[] fields = type.GetFields(flag);
+
+        for (int i = 0; i < fields.Length; i++)
+            Debug.Log($"{fields.ToString()}");
 
         foreach (Menu prefab in _menus)
         {
