@@ -8,21 +8,16 @@ using UnityToolbarExtender;
 using System.IO;
 
 [InitializeOnLoad]
-public class ToolbarLeft
+public static class ToolbarLeft
 {
     static ToolbarLeft()
     {
         ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
     }
 
-    private static void OnToolbarGUI(IMGUIEvent evt)
-    {
-        Debug.Log($"OnToolbarGUI {evt.target}");
-    }
-
     static void OnToolbarGUI()
     {
-        GUIContent content = new GUIContent(EditorSceneManager.GetActiveScene().name);
+        GUIContent content = new (EditorSceneManager.GetActiveScene().name);
         
         Rect dropdownRect = new Rect(5, 0, 150, 20);
         if (EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.toolbarDropDown))
