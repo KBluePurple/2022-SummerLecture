@@ -58,7 +58,7 @@ namespace UnityToolbarExtender
 					var root = m_currentToolbar.GetType().GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
 					var rawRoot = root.GetValue(m_currentToolbar);
 					var mRoot = rawRoot as VisualElement;
-                    
+					
 					RegisterCallback("ToolbarZoneLeftAlign", OnToolbarGUILeft);
 					RegisterCallback("ToolbarZoneRightAlign", OnToolbarGUIRight);
 
